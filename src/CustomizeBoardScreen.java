@@ -1,7 +1,11 @@
+/**
+ * @Author Jorge Saura 
+ * @Version 1.0
+ * @Since 05/03/2024
+ */
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;

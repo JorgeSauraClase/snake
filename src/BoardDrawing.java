@@ -1,4 +1,8 @@
-
+/**
+ * @Author Jorge Saura 
+ * @Version 1.0
+ * @Since 05/03/2024
+ */
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -19,23 +23,24 @@ public class BoardDrawing extends JPanel {
     int row = 8;
     int col = 8;
     ArrayList<Rectangle> cells;
-    //int player;
+ 
     int[] cellnos;
 
     BoardScreen bs;
-    //ArrayList<Portal> portals;
-    //ArrayList<Player> players;
+  
 
+    /**
+ * Constructor de la clase BoardDrawing.
+ * @param row Número de filas del tablero.
+ * @param col Número de columnas del tablero.
+ * @param bs Referencia a la pantalla de tablero (BoardScreen).
+ */
     public BoardDrawing(int row, int col, BoardScreen bs) {
         this.bs = bs;
 
         this.row = row;
         this.col = col;
-        //player = 0;
-        //bs.players = new ArrayList<Player>();
-        //for(int i = 1;i <= bs.returnMaxPlayers();i++)
-        //    bs.players.add(new Player(i));
-        //get and add player(s) names
+     
 
         cells = new ArrayList<Rectangle>();
 
@@ -65,20 +70,15 @@ public class BoardDrawing extends JPanel {
 
     }
 
+ /**
+ * @param g Objeto Graphics para realizar el dibujado.
+ */
+    
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;//.create();
+        Graphics2D g2d = (Graphics2D) g;
 
-        /*
-		int sw = getSize().width;
-		int sh = getSize().height;
-		int a = (int) (0.75*((sw > sh)?sh:sw));
-		
-		//Point start = new Point(0,0);
-		//Point end = new Point(100,100);
-		
-		g.drawLine(0,0,sw, sh);
-         */
+    
         //Create cells
         int width = getWidth();
         int height = getHeight();
@@ -120,7 +120,7 @@ public class BoardDrawing extends JPanel {
 
             String message = "" + cellnos[i];
             g2d.drawString(message, (int) cell.getCenterX(), (int) cell.getCenterY());
-            //g2d.setColor(Color.red);
+         
 
             //draw player position
             for (int pl = 0; pl < bs.maxPlayers; pl++) {
@@ -175,14 +175,11 @@ public class BoardDrawing extends JPanel {
 
     }
 
-    /*
-	public void ensurePlayerPosition(){
-		for(Portal port :portals){
-			if(player == port.returnStart())
-				player = port.returnEnd();
-		}
-	}
-     */
+
+ /**
+ * @param pnos El número del jugador.  
+ * @return Un mensaje que indica si el jugador cayó en una serpiente o escalera. 
+ */
     public String ensurePlayerPosition(int pnos) {
         String message = "";
         for (Portal port : bs.portals) {
@@ -198,11 +195,10 @@ public class BoardDrawing extends JPanel {
         return message;
     }
 
-    /*
-	public void setPlayer(int a){
-		player = a;
-	}
-     */
+/** 
+ * @param a Número de posiciones a avanzar en el tablero.
+ * @param pnos El número del jugador.
+ */
     public void setPlayer(int a, int pnos) {
         bs.players.get(pnos).incPosition(a);
     }
